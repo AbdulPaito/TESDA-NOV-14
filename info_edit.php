@@ -1,4 +1,12 @@
 <?php
+
+session_start(); // Start the session
+
+// Prevent caching
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
+
 // Step 1: Establish connection
 $host = 'localhost'; // Define your host
 $user = 'root'; 
@@ -109,14 +117,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
 
     // Check if the user uploaded new profile image or ID picture
     if (isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] == 0) {
-        $profile_image = "Upload-image/" . $_FILES['profile_image']['name'];  // Assuming 'uploads' is the folder where you store images
+        $profile_image = "uploads/" . $_FILES['profile_image']['name'];  // Assuming 'uploads' is the folder where you store images
         move_uploaded_file($_FILES['profile_image']['tmp_name'], $profile_image);
     } else {
         $profile_image = $user['profile_image'];  // Use existing image if not updated
     }
 
     if (isset($_FILES['imageUpload']) && $_FILES['imageUpload']['error'] == 0) {
-        $imageUpload = "Upload-image/" . $_FILES['imageUpload']['name'];  // Assuming 'uploads' is the folder where you store images
+        $imageUpload = "uploads/" . $_FILES['imageUpload']['name'];  // Assuming 'uploads' is the folder where you store images
         move_uploaded_file($_FILES['imageUpload']['tmp_name'], $imageUpload);
     } else {
         $imageUpload = $user['imageUpload'];  // Use existing image if not updated
@@ -204,17 +212,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
     } else {
         $all_updates_successful = false;
     }
-
     // Final check for all updates
     if (!$all_updates_successful) {
         die("Update failed: " . mysqli_error($connection));
     } else {
-        echo "Record updated successfully!";
-        header('Location: login.php');  // Redirect to profile page after success
+        $_SESSION['form_submitted'] = true; // Set session variable to indicate form submission
+        header('Location: login.php');  // Redirect to login page after success
         exit;
     }
 }
-?> 
+
+// Check if the form has been submitted
+if (isset($_SESSION['form_submitted'])) {
+    unset($_SESSION['form_submitted']); // Unset the variable after redirect
+    header('Location: login.php'); // Redirect to login page if form was submitted
+    exit;
+}
+?>
 
 
 
