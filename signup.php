@@ -130,8 +130,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           </div>
 
           <div class="inputBox">
-            <input type="text" name="pin" placeholder="6-Digit PIN" pattern="\d{6}" title="PIN must be exactly 6 digits" required>
-          </div>
+          <input type="password" id="pin" name="pin" placeholder="6-Digit PIN" pattern="\d{6}" title="PIN must be exactly 6 digits" required>
+          <i class="fa fa-eye eye-icon" id="togglePin" onclick="togglePin()"></i>
+        </div>
+
 
           <div class="inputBox2">
             <input type="submit" value="Sign Up">
@@ -143,16 +145,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   <script>
   function togglePassword() {
-      var passwordField = document.getElementById('password');
-      var eyeIcon = document.getElementById('togglePassword');
-      if (passwordField.type === 'password') {
-        passwordField.type = 'text';
-        eyeIcon.classList.add('active');
-      } else {
-        passwordField.type = 'password';
-        eyeIcon.classList.remove('active');
-      }
+    var passwordField = document.getElementById('password');
+    var eyeIcon = document.getElementById('togglePassword');
+    if (passwordField.type === 'password') {
+      passwordField.type = 'text';
+      eyeIcon.classList.add('active');
+    } else {
+      passwordField.type = 'password';
+      eyeIcon.classList.remove('active');
     }
-  </script>
+  }
+
+  function togglePin() {
+    var pinField = document.getElementById('pin');
+    var eyeIcon = document.getElementById('togglePin');
+    if (pinField.type === 'password') {
+      pinField.type = 'text';
+      eyeIcon.classList.add('active');
+    } else {
+      pinField.type = 'password';
+      eyeIcon.classList.remove('active');
+    }
+  }
+</script>
+
 </body>
 </html>
