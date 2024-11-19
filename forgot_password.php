@@ -61,6 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Forgot Password</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="log.css">
   <style>
     .error-message {
@@ -91,6 +92,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       position: relative;
       top: -30px;
     }
+    .eye-icon {
+      position: absolute;
+      right: 10px;
+      top:10%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #aaa;
+      font-size: 20px;
+      
+    }
+    .eye-icon.active {
+      color: #000;
+    }
+
   </style>
 </head>
 <body>
@@ -108,9 +123,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           <div class="inputBox">
             <input type="email" name="email" placeholder="Email" required>
           </div>
-          <div class="inputBox">
-            <input type="text" name="pin" placeholder="6-digit PIN" required>
-          </div>
+          <div class="inputBox" style="position: relative;">
+          <input type="password" id="pin" name="pin" placeholder="6-digit PIN" required>
+          <i class="fa fa-eye eye-icon" id="togglePin" onclick="togglePin()"></i>
+        </div>
+
           <div class="inputBox1">
             <input type="submit" value="Request Password Reset">
           </div>
@@ -120,3 +137,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   </section>
 </body>
 </html>
+
+<script>
+  function togglePin() {
+    const pinInput = document.getElementById('pin');
+    const toggleIcon = document.getElementById('togglePin');
+
+    if (pinInput.type === 'password') {
+      pinInput.type = 'text';
+      toggleIcon.classList.remove('fa-eye');
+      toggleIcon.classList.add('fa-eye-slash');
+    } else {
+      pinInput.type = 'password';
+      toggleIcon.classList.remove('fa-eye-slash');
+      toggleIcon.classList.add('fa-eye');
+    }
+  }
+</script>
