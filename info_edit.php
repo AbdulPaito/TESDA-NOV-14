@@ -117,14 +117,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
 
     // Check if the user uploaded new profile image or ID picture
     if (isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] == 0) {
-        $profile_image = "uploads/" . $_FILES['profile_image']['name'];  // Assuming 'uploads' is the folder where you store images
+        $profile_image = "Upload-image/" . $_FILES['profile_image']['name'];  // Assuming 'uploads' is the folder where you store images
         move_uploaded_file($_FILES['profile_image']['tmp_name'], $profile_image);
     } else {
         $profile_image = $user['profile_image'];  // Use existing image if not updated
     }
 
     if (isset($_FILES['imageUpload']) && $_FILES['imageUpload']['error'] == 0) {
-        $imageUpload = "uploads/" . $_FILES['imageUpload']['name'];  // Assuming 'uploads' is the folder where you store images
+        $imageUpload = "Upload-image/" . $_FILES['imageUpload']['name'];  // Assuming 'uploads' is the folder where you store images
         move_uploaded_file($_FILES['imageUpload']['tmp_name'], $imageUpload);
     } else {
         $imageUpload = $user['imageUpload'];  // Use existing image if not updated
