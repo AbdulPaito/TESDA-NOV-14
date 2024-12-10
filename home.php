@@ -191,7 +191,7 @@ h1 {
         <?php foreach ($courses as $course): ?>
             <div class="box">
                 <h3><?php echo htmlspecialchars($course); ?></h3>
-                <p>Total Students: <?php echo htmlspecialchars($course_counts[$course] ?? 0); ?></p>
+                <p>Total Trainees: <?php echo htmlspecialchars($course_counts[$course] ?? 0); ?></p>
             </div>
         <?php endforeach; ?>
     </div>
