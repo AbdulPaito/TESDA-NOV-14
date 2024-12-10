@@ -173,7 +173,7 @@ $regions = [
         td input[type="text"] {
             width: calc(100% - 16px); /* Adjust width to fit table without overflow */
             padding: 6px;
-            width: 100px;
+            width: 300px;
             border: 1px solid black;
             border-radius: 4px;
             box-sizing: border-box; /* Ensure padding and border are included in the width */
@@ -192,6 +192,9 @@ $regions = [
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
+        .age-input {
+    width: 20px;
+}
 
         button[type="submit"]:hover, button[type="button"]:hover {
             background-color: #0056b3;
@@ -330,8 +333,8 @@ $regions = [
                             ?>
                         </select>
                         
-                    <input type="text" name="age" id="age" size="20" placeholder="Age" value="<?= htmlspecialchars($_SESSION['age'] ?? '') ?>" readonly>
-                    
+                    <input type="text" name="age" id="age" size="20" placeholder="Age" value="<?= htmlspecialchars($_SESSION['age'] ?? '') ?>" readonly style="width: 40px; border: 1px solid black; padding: 2px;">
+
                 </td>
                
                     <td>3.5. Birthplace
@@ -389,10 +392,9 @@ $regions = [
             <option value="junior_high_graduate" <?= isset($_SESSION['educational_attainment']) && $_SESSION['educational_attainment'] == 'junior_high_graduate' ? 'selected' : '' ?>>Junior High Graduate</option>
             <option value="senior_high_graduate" <?= isset($_SESSION['educational_attainment']) && $_SESSION['educational_attainment'] == 'senior_high_graduate' ? 'selected' : '' ?>>Senior High Graduate</option>
         </select>
-        
         Parent/Guardian Name:
         <input type="text" name="parent_guardian_name" size="50" placeholder="Name" value="<?= htmlspecialchars($_SESSION['parent_guardian_name'] ?? '') ?>"></td>
-                
+           
     </td>
 </tr>
 
