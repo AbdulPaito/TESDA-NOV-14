@@ -173,7 +173,7 @@ $regions = [
         td input[type="text"] {
             width: calc(100% - 16px); /* Adjust width to fit table without overflow */
             padding: 6px;
-            width: 300px;
+            width: 230px;
             border: 1px solid black;
             border-radius: 4px;
             box-sizing: border-box; /* Ensure padding and border are included in the width */
